@@ -16,7 +16,7 @@
                         templateUrl: 'views/results/results.tpl.html'
                     }
                 },
-                data:{ pageTitle: 'Inflo | Know Your Neighborhood' },
+                data:{ pageTitle: 'Know Your Vendor' },
                 resolve: {
                     countyData: function(Restangular, $stateParams) {
                         return Restangular.one('api').customGET('search',{'q':$stateParams.q});
