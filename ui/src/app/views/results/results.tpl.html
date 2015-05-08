@@ -1,8 +1,104 @@
-<div class="vh-root-container">
+<div class="container">
 	<div class="row">
 		<div class="col-xs-12">
 			
-			<img style="float:right;" src="images/logo1.png">
+			<!--img class="logo" style="float:right;" src="images/logo1.png" -->
+			<h2 id="vendor-name">{{vendorData.vendor_name}}</h2>
+			
+			<h4 class="text-primary">Duns Number: 
+				<span id="duns-number">{{vendorData.duns}}</span>
+			</h4>
+			
+			<ul class="vn-basic-info">
+				<li>Address: 
+					<span class="vn-label-val" id="address">
+					{{vendorData.address}}
+					</span>
+				</li>
+				
+				<li>Contact Name:
+					<span class="vn-label-val" id="contact-name">
+						{{vendorData.contact_name}}
+					</span>
+				</li>
+				
+				<li>Phone: 
+					<span class="vn-label-val" id="phone">
+						{{vendorData.contact_phone}}
+					</span>
+				</li>
+				
+				<li>Email: 
+					<span class="vn-label-val" id="email">
+						{{vendorData.contact_email}}
+					</span>
+				</li>
+				
+				<li>Reps and Certs: 
+					<span class="vn-label-val" id="reps-and-certs">
+						{{vendorData.reps_cert}}
+					</span>
+				</li>
+				
+				<li>Is this vendor allowed to sell to the government?
+					<span class="vn-label-val" id="excludes">
+						{{vendorData.exclusion_ind}}
+					</span>
+				</li>
+
+
+			</ul>
+		</div>
+
+
+	</div>
+
+	<!--div class="row">
+		<div class="col-xs-12">
+			<details>
+				<summary>Detailed Information</summary>
+				<h3>Contracts:</h3>
+				<table class="table table-bordered table-striped">
+					
+					<thead>
+						<tr>
+							<th>Agency Name</th>	
+							<th>Period of Performance Start Date</th>
+							<th>Period of Performance End Date</th>
+							<th>Obligated Amount</th>
+							<th>Contact Name</th>
+						</tr>
+					</thead>
+					
+					<tr id="detail-row">
+						<td id="agency-name">Wonderful Name</td>
+						<td id="pop-start-dt">Excellent Start Date</td>
+						<td id="pop-end-dt">Sad contract is ending now</td>
+						<td id="obligated-amt">$1 billion, no ... $1 million</td>
+						<td id="contact-name">Memorable Name</td>
+					</tr>
+
+					<tr id="detail-row">
+						<td id="agency-name">Excellent Name</td>
+						<td id="pop-start-dt">Excellent Start Date</td>
+						<td id="pop-end-dt">Sad contract is ending now</td>
+						<td id="obligated-amt">$1 billion, no ... $1 million</td>
+						<td id="contact-name">Memorable Name</td>
+					</tr>
+			
+				</table>
+			</details>
+		</div>	
+	</div-->
+
+</div>
+
+
+<!--div class="vh-root-container">
+	<div class="row">
+		<div class="col-xs-12">	
+			
+
 			<h1 class="text-primary" id="duns-number">{{vendorData.duns}}</h1>
 			<h2 id="vendor-name">{{vendorData.vendor_name}}</h2>
 			
@@ -47,7 +143,7 @@
 		</div>
 
 
-	</div>
+	</div-->
 
 	<!--div class="row">
 		<div class="col-xs-12">g
