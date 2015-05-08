@@ -30,7 +30,7 @@
                 .then(function(result) {
                     $scope.loginLoading = false;
                     $scope.hasError = 0;
-                    $state.transitionTo('results', {'fips':result.stfips,'q':$scope.query});
+                    $state.transitionTo('results', {'q':$scope.query});
                 }, function() {
                     $scope.loginLoading = false;
                     $scope.hasError = 1;

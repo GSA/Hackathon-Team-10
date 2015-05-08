@@ -76,13 +76,16 @@ module.exports = {
       'vendor/ladda/dist/ladda.min.js',
       'vendor/angular-ladda/dist/angular-ladda.js',
       'vendor/raphael/raphael-min.js',
-      'vendor/morris.js/morris.min.js'
+      'vendor/morris.js/morris.min.js',
+	  'vendor/bootstrap-3.3.4-dist/css/bootstrap.js'
     ],
     css: [
        'vendor/font-awesome/css/font-awesome.min.css',
        'vendor/chartist/dist/chartist.min.css',
        'vendor/ladda/dist/ladda.min.css',
-       'vendor/morris.js/morris.css'
+       'vendor/morris.js/morris.css',
+	   'vendor/bootstrap-3.3.4-dist/css/bootstrap.css',
+	   'vendor/bootstrap-3.3.4-dist/css/bootstrap-theme.css'
     ],
     assets: [
     ],

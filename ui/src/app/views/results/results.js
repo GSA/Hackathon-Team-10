@@ -5,7 +5,7 @@
         .config( function initRoutes( $stateProvider ) {
             $stateProvider
             .state( 'results', {
-                url: '/results?q&fips',
+                url: '/results?q',
                 views: {
                     "header": {
                         controller: 'SearchController',
@@ -18,7 +18,7 @@
                 },
                 data:{ pageTitle: 'Know Your Vendor' },
                 resolve: {
-                    countyData: function(Restangular, $stateParams) {
+                    vendorData: function(Restangular, $stateParams) {
                         return Restangular.one('api').customGET('search',{'q':$stateParams.q});
                     },
                     populationData: function(Restangular, $stateParams) {
@@ -33,9 +33,9 @@
         })
         .controller( 'ResultsController', ResultsController);
 
-        function ResultsController($scope, Restangular, countyData, $state, populationData, housingData) {
-            $scope.countyData = countyData;
-            $scope.housingData = housingData; //{"total":104061,"vacancy":{"number":30881,"percent":29},"occupancy":{"number":73180,"percent":70},"rentalOccupancy":{"number":34135,"percent":32},"ownerOccupancy":{"number":53071,"percent":50}};
+        function ResultsController($scope, Restangular, vendorData, $state, populationData, housingData) {
+            $scope.vendorData = vendorData;
+            /*$scope.housingData = housingData; //{"total":104061,"vacancy":{"number":30881,"percent":29},"occupancy":{"number":73180,"percent":70},"rentalOccupancy":{"number":34135,"percent":32},"ownerOccupancy":{"number":53071,"percent":50}};
             $scope.populationData = populationData; //{"race":{"white":{"number":156153,"percent":85.67},"black":{"number":17105,"percent":9.38},"americanIndianAlaskaNative":{"number":1216,"percent":0.67},"asian":{"number":1348,"percent":0.74},"nativeHawaiian":{"number":89,"percent":0.05},"otherRace":{"number":3631,"percent":1.99},"twoOrMore":{"number":2723,"percent":1.49}},"sex":{"male":{"number":89196,"percent":48.94},"female":{"number":93069,"percent":51.06}},"total":182265};
 
             $scope.gender = {};
@@ -56,7 +56,7 @@
             $scope.owner.data = [{ y: 'owner', a: $scope.housingData.ownerOccupancy.number, b: $scope.housingData.rentalOccupancy.number}];
 
             $scope.occupied = {};
-            $scope.occupied.data = [{ y: 'occupied', a: $scope.housingData.vacancy.number, b: $scope.housingData.occupancy.number}];
+            $scope.occupied.data = [{ y: 'occupied', a: $scope.housingData.vacancy.number, b: $scope.housingData.occupancy.number}];*/
 
         }
 })();
