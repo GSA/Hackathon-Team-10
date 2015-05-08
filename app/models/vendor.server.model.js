@@ -5,14 +5,14 @@ var mongoose = require('mongoose'),
  * Article Schema
  */
 var VendorSchema = new Schema({
-                                agencyName : String,
-                                coBusSizeDeterminationDesc : String,
-                                effectiveDate : Date,
-                                lastDateToOrder : Date,
+                                agencyname : String,
+                                cobussizeseterminationsesc : String,
+                                effectivedate : Date,
+                                lastdatetoorder : Date,
                                 piid : String,
-                                totalBaseAndAllOptsValue : String,
-                                vendorDunsName : String,
-                                vendorDunsNumber : String
+                                totalbaseandalloptsvalue : String,
+                                vendordunsname : String,
+                                vendordunsnumber : String
 });
 
-mongoose.model('vendor_contract_details', VendorSchema);
+mongoose.model('vendorcontractdetails', VendorSchema);

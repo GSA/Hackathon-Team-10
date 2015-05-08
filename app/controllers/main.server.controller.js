@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	eqiRes = mongoose.model('eqiresult'),
 	eqiDet = mongoose.model('eqidetail'),
-    vendorDet = mongoose.model('vendor_contract_details'),
+    vendorDet = mongoose.model('vendorcontractdetails'),
 	calcService = require('./calc.server.controller'),
   Q = require('q'),
 	_ = require('lodash');
@@ -25,7 +25,7 @@ exports.autoComplete = function(req, res) {
     var regex = new RegExp(stateCounty, 'i');
     console.log('stateCounty is :' + stateCounty);
 
-    eqiRes.aggregate({
+    vendorDet.aggregate({
         $match: {
             countyDescription: regex
         }
@@ -78,6 +78,7 @@ exports.searchByDuns = function(req,res){
                     results.exclusion_ind = (data2.results[0].hasKnownExclusion  ?'Yes':'No');
 
                     results.reps_certs = 'SMALL BUSINESS';
+                    results.duns = duns;
 
                     console.log(results); 
                     res.send(results); 
@@ -87,6 +88,30 @@ exports.searchByDuns = function(req,res){
     
     
 };
+
+exports.getDetails = function(req, res) {
+    var duns = req.query.q;
+    console.log('*'+duns+'*');
+    var details = {};  
+    details.contracts = {};
+    vendorDet.find({
+        piid: 'GS35F366BA'
+    }, function(err, results) {
+        console.log(results.length);
+         for (var i = 0; i < results.length; i++) {
+            console.log('details');
+            details.contracts.contract_numb = results[i].piid;
+            details.contracts.agency_name = results[i].agencyname;
+            details.contracts.pop_st_dt = results[i].effectivedate;
+            details.contracts.pop_end_dt = results[i].lastdatetoorder;
+            details.contracts.obligated_amt = results[i].totalbaseandalloptsvalue;
+         }
+         console.log(details);
+         res.send(details);
+    }
+    );
+};
+
 
 //This funciton returns aggregate results and score for a given county
 exports.searchByCountyState = function(req, res) {

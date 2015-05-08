@@ -2,7 +2,7 @@
 
 module.exports = {
 	db: {
-		uri: 'mongodb://localhost/vendorhub',
+		uri: 'mongodb://localhost:27017/vendorhub',
 		options: {
 			user: '',
 			pass: ''

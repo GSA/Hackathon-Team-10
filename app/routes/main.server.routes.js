@@ -11,6 +11,9 @@ console.log('In autocomplete');
 		.get(main.autoComplete);	
 
 	app.route('/inflo/api/search')
-		.get(main.searchByDuns);		
+		.get(main.searchByDuns);	
+
+	app.route('/inflo/api/details')
+		.get(main.getDetails);	
 
 };
