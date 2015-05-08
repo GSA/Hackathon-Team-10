@@ -31,7 +31,7 @@
             $scope.appName = appName;
             $scope.appVersion = appVersion;
         })
-        .constant('appName', 'Octo | Know Your Neighborhood')
+        .constant('appName', 'GSA | Know Your Vendor')
         .constant('appVersion', '1.0.0')
         .run( function initApplication ($rootScope, $state) {
                 $rootScope.$state = $state;
