@@ -2,7 +2,7 @@
 
 module.exports = {
 	db: {
-		uri: 'mongodb://localhost/octo-mock2',
+		uri: 'mongodb://localhost/vendorhub',
 		options: {
 			user: '',
 			pass: ''

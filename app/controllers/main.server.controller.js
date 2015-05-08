@@ -43,6 +43,23 @@ exports.autoComplete = function(req, res) {
     });
 };
 
+exports.searchByDuns = function(req,res){
+    var duns = req.query.q;
+    var results = {};
+    console.log('Calling sensus getHousingInfo');
+
+    var request = client.get('https://api.data.gov/sam/v1/registrations/'+duns+'0000?api_key=IzgShQdB6ZUJTOVRed2J4rSqZooptXlx8SOfIKGg/', function(data, response, err){
+                          
+                var res= data;
+                console.log(res);                                                
+                //res.send(results);
+                results.contact_name = res.sam_data.electronicBusinessPoc.firstName + ' ' + electronicBusinessPoc.lastName;
+                results.contact_phone = res.sam_data.electronicBusinessPoc.usPhone;
+                results.contact_email = res.sam_data.electronicBusinessPoc.email;           
+        }); 
+    res.send(results);
+}
+
 //This funciton returns aggregate results and score for a given county
 exports.searchByCountyState = function(req, res) {
     var stateCounty = req.query.q;
