@@ -21,16 +21,24 @@ $ npm install -g grunt-cli
 ### Clone The GitHub Repository
 You can use Git to directly clone the INFLO repository from githubb:
 ```bash
-$ git clone https://github.com/Octo-Hackathon/octo-mock2.git
+$ git clone https://github.com/sonimehul/Hackathon-Team-10.git
 ```
-This will clone the latest version of the INFLO repository to a **octo-mock2** folder. 
+This will clone the latest version of the INFLO repository to a **Hackathon-Team-10** folder. 
 
 ## Quick Install
-Once you've cloned the repository and installed all the prerequisites, go to octo-mock2/mean directory and install Node.js dependencies using npm:
+Once you've cloned the repository and installed all the prerequisites, go to Hackathon-Team-10/mean directory and install Node.js dependencies using npm:
 
 ```bash
 $ npm install
 ```
+After that go to Hackathon-Team-10/mean/ui directory and build UI resources using:
+
+```bash
+$ npm install
+$ bower install
+$ grunt build
+```
+
 
 ## Running Your Application
 After the install process is over, you'll be able to run your application using Grunt. Just run grunt default task:
@@ -39,7 +47,7 @@ After the install process is over, you'll be able to run your application using 
 $ grunt
 ```
 
-Your application should run on port 3000, so in your browser just go to [http://localhost:3000](http://localhost:3000)
+Your application should run on port 3000, so in your browser just go to [http://localhost:3000/inflo](http://localhost:3000/inflo)
 
 That's it! Your application should be running. 
 
