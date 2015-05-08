@@ -7,9 +7,16 @@ var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	eqiRes = mongoose.model('eqiresult'),
 	eqiDet = mongoose.model('eqidetail'),
+    vendorDet = mongoose.model('vendor_contract_details'),
 	calcService = require('./calc.server.controller'),
   Q = require('q'),
 	_ = require('lodash');
+
+/**
+ * Module dependencies.
+ */
+var Client = require('node-rest-client').Client;
+
 
 //This function returns array of JSON objects of County Name, State
 //based on the matching RegEx pattern
@@ -45,20 +52,41 @@ exports.autoComplete = function(req, res) {
 
 exports.searchByDuns = function(req,res){
     var duns = req.query.q;
-    var results = {};
-    console.log('Calling sensus getHousingInfo');
+    var results = {};    
 
-    var request = client.get('https://api.data.gov/sam/v1/registrations/'+duns+'0000?api_key=IzgShQdB6ZUJTOVRed2J4rSqZooptXlx8SOfIKGg/', function(data, response, err){
+    console.log('Calling Vendor API 1');
+    var client = new Client();
+    var request = client.get('http://api.data.gov/sam/v1/registrations/'+duns+'0000?api_key=IzgShQdB6ZUJTOVRed2J4rSqZooptXlx8SOfIKGg', function(data, response, err){
                           
-                var res= data;
-                console.log(res);                                                
+                                                               
                 //res.send(results);
-                results.contact_name = res.sam_data.electronicBusinessPoc.firstName + ' ' + electronicBusinessPoc.lastName;
-                results.contact_phone = res.sam_data.electronicBusinessPoc.usPhone;
-                results.contact_email = res.sam_data.electronicBusinessPoc.email;           
+                results.contact_name = data.sam_data.registration.electronicBusinessPoc.firstName + ' ' + data.sam_data.registration.electronicBusinessPoc.lastName;
+                results.contact_phone = data.sam_data.registration.electronicBusinessPoc.usPhone;
+                results.contact_email = data.sam_data.registration.electronicBusinessPoc.email; 
+                
+
+                var request2 = client.get('https://api.data.gov/sam/v1/registrations?qterms=(duns:'+duns+')&api_key=IzgShQdB6ZUJTOVRed2J4rSqZooptXlx8SOfIKGg', function(data2, response2, err2){ 
+                    results.vendor_name = data2.results[0].legalBusinessName;
+                    results.address = data2.results[0].samAddress.line1 + 
+                                        data2.results[0].samAddress.city + 
+                                        ', '+
+                                        data2.results[0].samAddress.stateOrProvince + 
+                                        ' '+ 
+                                        data2.results[0].samAddress.zip + 
+                                        '-'+
+                                        data2.results[0].samAddress.zip4;
+                    results.exclusion_ind = (data2.results[0].hasKnownExclusion  ?'Yes':'No');
+
+                    results.reps_certs = 'SMALL BUSINESS';
+
+                    console.log(results); 
+                    res.send(results); 
+                });
+
         }); 
-    res.send(results);
-}
+    
+    
+};
 
 //This funciton returns aggregate results and score for a given county
 exports.searchByCountyState = function(req, res) {

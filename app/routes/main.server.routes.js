@@ -11,6 +11,6 @@ console.log('In autocomplete');
 		.get(main.autoComplete);	
 
 	app.route('/inflo/api/search')
-		.get(main.searchByCountyState);		
+		.get(main.searchByDuns);		
 
 };
